@@ -1,4 +1,4 @@
-﻿Kubernetes Minimal Demo: Pod Communication & Host-Service
+Kubernetes Minimal Demo: Pod Communication & Host-Service
 Overview
 This repository demonstrates a minimal Kubernetes setup for learning purposes:
 
