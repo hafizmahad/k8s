@@ -64,3 +64,74 @@ This repo demonstrates minimal Kubernetes pod communication for learning and loc
         ↓
 [Kubernetes Service] <---> [Pod]
 ```
+
+---
+
+## 4️⃣ Deployment (Bare Minimum)
+
+```bash
+kubectl create ns test
+
+kubectl apply -f pod1.yaml
+kubectl apply -f pod1-service.yaml
+kubectl apply -f pod2.yaml
+kubectl apply -f host-pod.yaml
+kubectl apply -f host-service.yaml
+```
+
+---
+
+## 5️⃣ Testing
+
+### Inside Cluster (Pod2)
+
+```bash
+kubectl exec -it pod2 -n test -- sh
+
+# Pod2 → Pod1
+curl pod1-service:80
+
+# Pod2 → Host-Service
+curl host-service:8080
+```
+
+### From Windows Host
+
+```bash
+# Check NodePorts
+kubectl get svc -n test
+
+# Access Pod1
+curl http://localhost:<pod1-nodeport>
+
+# Access Host-Service
+curl http://localhost:<host-service-nodeport>
+
+# Alternative: port-forward for guaranteed access
+kubectl port-forward svc/host-service 8080:8080 -n test
+curl http://localhost:8080
+```
+
+---
+
+## 6️⃣ Debugging Commands
+
+```bash
+# Check all pods and their labels
+kubectl get pods -n test --show-labels
+
+# Check all services
+kubectl get svc -n test
+
+# View logs
+kubectl logs pod1 -n test
+kubectl logs host-service -n test
+
+# Shell into Pod2 and test connectivity
+kubectl exec -it pod2 -n test -- sh
+curl pod1-service:80
+curl host-service:8080
+
+# Port-forward for direct access
+kubectl port-forward svc/host-service 8080:8080 -n test
+```
