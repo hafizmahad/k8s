@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod1
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod1
+  template:
+    metadata:
+      labels:
+        app: pod1
+    spec:
+      containers:
+      - name: pod1
+        image: hashicorp/http-echo
+        args:
+        - "-text=Hello from Pod1"
+        ports:
+        - containerPort: 5678
