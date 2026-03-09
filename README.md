@@ -67,7 +67,27 @@ This repo demonstrates minimal Kubernetes pod communication for learning and loc
 
 ---
 
-## 4️⃣ Deployment (Bare Minimum)
+## 4️⃣ Getting Started
+
+### Clone This Repository
+
+```bash
+# 1. Clone the repo to your local machine
+git clone https://github.com/YOUR_USERNAME/k8s-demo.git
+
+# 2. Move into the project folder
+cd k8s-demo
+
+# 3. Confirm all files are present
+ls
+```
+
+> ⚠️ Replace `YOUR_USERNAME` with your actual GitHub username.
+> Example: `git clone https://github.com/john123/k8s-demo.git`
+
+---
+
+## 5️⃣ Deployment (Bare Minimum)
 
 ```bash
 kubectl create ns test
@@ -81,7 +101,7 @@ kubectl apply -f host-service.yaml
 
 ---
 
-## 5️⃣ Testing
+## 6️⃣ Testing
 
 ### Inside Cluster (Pod2)
 
@@ -114,7 +134,7 @@ curl http://localhost:8080
 
 ---
 
-## 6️⃣ Debugging Commands
+## 7️⃣ Debugging Commands
 
 ```bash
 # Check all pods and their labels
